@@ -34,6 +34,20 @@ public class linkedlist {
         }
 
     }
+    public void delete(int data){
+        Node temp=head;
+        Node prev=null;
+        while(temp.next!=null ){
+            prev=temp;
+            temp=temp.next;
+            if(temp.data==data){
+                int y=data;
+                prev.next=temp.next;
+                System.out.println("the deleted data "+y);
+            }
+            
+        }
+    }
     public static void main(String [] argc){
         linkedlist li=new linkedlist();
         li.display();
@@ -41,6 +55,8 @@ public class linkedlist {
         li.addNode(2);
         li.addNode(3);
         li.addNode(4);
+        li.display();
+        li.delete(3);
         li.display();
 
 

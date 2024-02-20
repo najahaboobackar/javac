@@ -83,13 +83,33 @@ public class linkedlist {
                 next=next.next;
             }
             current.next=next;
-            if(next==tail){
+            if(next==tail &&current.data==next.data){
                 tail=current;
+                tail.next=null;
             }
             current=next;
             }
 
         }
+        /**
+         * 
+         */
+       public void reverse(){
+        Node temp=head;
+        Node p=null;
+        Node nx=null;
+        while(temp!=null){
+            nx=temp.next;
+            temp.next=p;
+            
+
+        
+        p=temp;
+        temp=nx;
+        }
+head=p;
+       }
+            
     
 
     public static void main(String[] argc) {
@@ -113,5 +133,9 @@ public class linkedlist {
         li.duplicateelement();
         System.out.println("after removuing duplicate");
         li.display();
+        System.err.println("revrse");
+        li.reverse();
+        li.display();
+        
     }
 }

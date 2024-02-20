@@ -15,9 +15,8 @@ public class dlinkedlist {
             head=newnode;
         }
         else{
-            newnode.next=head.next;
-            head.next=newnode;
-            newnode.prev=head;
+            tail.next=newnode;
+           newnode.prev=tail;
         }
         tail=newnode;
     
@@ -29,12 +28,15 @@ public class dlinkedlist {
             temp=temp.next;
         }
     }
+    
+    
     public static void main(String[] args) {
         dlinkedlist d=new dlinkedlist();
         d.addNode(2);
         d.addNode(3);
         d.addNode(4);
         d.display();
+        
         
     }
 

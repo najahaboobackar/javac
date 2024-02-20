@@ -1,4 +1,5 @@
-public class dlinkedlist {
+
+   public class dlinkedlist {
     class Node{
         int data;
         Node next;
@@ -15,8 +16,9 @@ public class dlinkedlist {
             head=newnode;
         }
         else{
+            
             tail.next=newnode;
-           newnode.prev=tail;
+            newnode.prev=tail;
         }
         tail=newnode;
     
@@ -28,7 +30,38 @@ public class dlinkedlist {
             temp=temp.next;
         }
     }
-    
+    public void displayrev(){
+        Node temp=tail;
+        while(temp!=null){
+            System.out.println(temp.data);
+            temp=temp.prev;
+        }
+    }
+    public void insertb(int data){
+        Node nw1=new Node( data);
+        //insert at begining
+        nw1.prev=null;
+        nw1.next=head;
+        head.prev=nw1;
+        head=nw1;
+    }
+    public void insertany(int data,int nextof){
+        Node nw=new Node( data);
+        Node temp=head;
+        while(temp!=null && temp.data!=nextof){
+            temp=temp.next;
+        }
+        if(temp.data==nextof){
+            nw.next=temp;
+            nw.prev=temp.prev;
+            temp.prev.next=nw;
+            temp.prev=nw;
+
+        }
+
+
+
+    }
     
     public static void main(String[] args) {
         dlinkedlist d=new dlinkedlist();
@@ -36,9 +69,21 @@ public class dlinkedlist {
         d.addNode(3);
         d.addNode(4);
         d.display();
-        
-        
+       
+      System.out.println("reversed data");
+        d.displayrev();
+        System.out.println("new inserted node at begigning");
+        d.insertb(6);
+        d.display();
+        System.err.println("inserted at any pos");
+        d.insertany(2, 3);
+        d.display();
+        System.out.println("reversed");
+        d.displayrev();
     }
 
     
 }
+    
+    
+   

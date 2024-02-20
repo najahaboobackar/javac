@@ -75,7 +75,21 @@ public class linkedlist {
             
             
         }
-        
+        public void duplicateelement(){
+            Node current=head;
+            while(current!=null){
+            Node next=current.next;
+            while(next!=null &&next.data==current.data){
+                next=next.next;
+            }
+            current.next=next;
+            if(next==tail){
+                tail=current;
+            }
+            current=next;
+            }
+
+        }
     
 
     public static void main(String[] argc) {
@@ -83,8 +97,10 @@ public class linkedlist {
         li.display();
         li.addNode(1);
         li.addNode(2);
-        li.addNode(3);
+        li.addNode(2);
         li.addNode(4);
+        li.addNode(5);
+        li.addNode(5);
         li.display();
         li.delete(3);
         li.display();
@@ -93,6 +109,9 @@ public class linkedlist {
         li.display();
         li.insertData(1,5);
         System.out.println("after addding 5");
+        li.display();
+        li.duplicateelement();
+        System.out.println("after removuing duplicate");
         li.display();
     }
 }

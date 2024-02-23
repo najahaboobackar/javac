@@ -1,4 +1,4 @@
-public class Queue {
+ public class Queue {
     class Node{
         int data;
         Node next;

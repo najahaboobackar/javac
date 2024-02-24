@@ -88,24 +88,65 @@ public int findMin(Node cur){
         return findMin(cur.l);
     }
 }
-public void delete(int data,Node r){
-    Node cur=r;
-    
+public void remove(int data){
+    Node cur=root;
+    removeh(data,cur,null);
+}
+public Node removeh(int data,Node cur,Node p){
     while(cur!=null){
-        if(data==cur.data){
-            if(cur.l!=null && cur.r!=null){
-                cur.data=findMin(cur.r);
-                delete(data, cur.r);
-                
-                
-            }
-            else if(cur.l==null){
-                root=cur.r;
+        if(data<cur.data){
+            p=cur;
+            cur=cur.l;
+        }
+        else if(data>cur.data){
+            p=cur;
+            cur=cur.r;
+        }
+        else{
+            if(cur.l!=null &&cur.r!=null){
+                cur.data=getMin(cur.r);
+               cur.r= removeh(cur.data, cur.r, cur);
             }
             else{
-                root=cur.l;
+                if(p==null){
+                    if(cur.r==null){
+                        root=cur.l;
+                    }
+                    else{
+                        root=cur.r;
+                    }
+                }
+                else{
+                    if(p.l==cur){
+                        if(cur.r==null){
+                            p.l=cur.l;
+                        }
+                        else{
+                            p.l=cur.r;
+                        }
+                    }
+                    else{
+                        if(cur.r==null){
+                            p.r=cur.l;
+                        }
+                        else{
+                            p.r=cur.r;
+                        }
+                    }
+                }
             }
         }
+        break;
+    }
+    return cur.r;
+
+}
+public int getMin(Node cur){
+    if(cur.l==null){
+        return cur.data;
+    }
+    else{
+        return getMin(cur.l);
     }
 }
 public static void main(String []argc){
@@ -124,6 +165,13 @@ public static void main(String []argc){
    b.postorder(b.root);    
    System.out.println("preoder");
    b.preoder(b.root);
+  b.remove(12);
+  b.remove(23);
+  b.remove(54);
+  b.remove(1);
+   System.out.println("after remove");
+   b.preoder(b.root);
+   b.inorder(b.root);
    
     
 }

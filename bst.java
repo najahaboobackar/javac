@@ -92,7 +92,7 @@ public void remove(int data){
     Node cur=root;
     removeh(data,cur,null);
 }
-public Node removeh(int data,Node cur,Node p){
+public void removeh(int data,Node cur,Node p){
     while(cur!=null){
         if(data<cur.data){
             p=cur;
@@ -105,7 +105,7 @@ public Node removeh(int data,Node cur,Node p){
         else{
             if(cur.l!=null &&cur.r!=null){
                 cur.data=getMin(cur.r);
-               cur.r= removeh(cur.data, cur.r, cur);
+                removeh(cur.data, cur.r, cur);
             }
             else{
                 if(p==null){
@@ -135,10 +135,11 @@ public Node removeh(int data,Node cur,Node p){
                     }
                 }
             }
+            break;
         }
-        break;
+        
     }
-    return cur.r;
+    
 
 }
 public int getMin(Node cur){
@@ -165,13 +166,14 @@ public static void main(String []argc){
    b.postorder(b.root);    
    System.out.println("preoder");
    b.preoder(b.root);
-  b.remove(12);
   b.remove(23);
-  b.remove(54);
-  b.remove(1);
+  
    System.out.println("after remove");
    b.preoder(b.root);
+   System.out.println("inorder");
    b.inorder(b.root);
+   boolean k=b.Search(23);
+   System.out.println(k);
    
     
 }

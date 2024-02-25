@@ -1,3 +1,4 @@
+import java.math.*;
 public class bst {
     
     class Node{
@@ -150,6 +151,28 @@ public int getMin(Node cur){
         return getMin(cur.l);
     }
 }
+public int closest(int target){
+    Node cur=root;
+    int close=cur.data;
+    while(cur!=null){
+    if(Math.abs(target-close)>Math.abs(target-cur.data)){
+        close=cur.data;
+        
+    }
+    if (target<cur.data){
+        cur=cur.l;
+    }
+    else if(target>cur.data){
+        cur=cur.r;
+    }
+    else{
+       break;
+    }
+    
+}
+return close;
+    
+}
 public static void main(String []argc){
     bst b=new bst();
 
@@ -167,12 +190,15 @@ public static void main(String []argc){
    System.out.println("preoder");
    b.preoder(b.root);
   b.remove(23);
+  int i=b.closest(1);
+  System.out.println("the closest number "+i);
   
    System.out.println("after remove");
    b.preoder(b.root);
    System.out.println("inorder");
    b.inorder(b.root);
    boolean k=b.Search(23);
+   System.out.println("after removing 23  retrun false beacause 23 is not present");
    System.out.println(k);
    
     
